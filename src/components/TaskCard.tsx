@@ -10,7 +10,7 @@ import {
   Star,
   CheckCircle,
 } from "lucide-react";
-import { TaskModal } from "./TaskModal"; // Reutilizamos el modal ya existente
+import { TaskModal } from "./TaskModal";
 
 type TaskCardProps = {
   task: Task;
@@ -23,7 +23,6 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
   const deleteTask = useTaskStore((state) => state.deleteTask);
   const completeTask = useTaskStore((state) => state.completeTask);
 
-  // Estados para toggle de detalles y modal de edición.
   const [showDetails, setShowDetails] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
 
@@ -48,7 +47,6 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
           task.status === "done" ? "opacity-50 line-through" : ""
         }`}
       >
-        {/* Cabecera con título y botones de acción */}
         <div className="flex justify-between items-start">
           <div className="flex-1">
             <h4 className="font-medium text-gray-900 dark:text-white flex items-center gap-2">
@@ -95,7 +93,6 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
           </div>
         </div>
 
-        {/* Botón para mostrar/ocultar detalles */}
         <div className="mt-2">
           <button
             onClick={(e) => {
@@ -108,7 +105,6 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
           </button>
         </div>
 
-        {/* Detalles de la tarea (se muestran solo si showDetails es true) */}
         {showDetails && (
           <div className="mt-2">
             <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -152,12 +148,12 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
                 <Calendar size={12} />
                 {task.startDate && (
                   <span>
-                    Inicio: {new Date(task.startDate).toLocaleDateString()}
+                    Begin: {new Date(task.startDate).toLocaleDateString()}
                   </span>
                 )}
                 {task.endDate && (
                   <span className="ml-2">
-                    Fin: {new Date(task.endDate).toLocaleDateString()}
+                    End: {new Date(task.endDate).toLocaleDateString()}
                   </span>
                 )}
               </div>
@@ -166,14 +162,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
             {task.points > 0 && (
               <div className="mt-2 text-xs text-yellow-500 dark:text-yellow-400 flex items-center gap-1">
                 <Star size={12} />
-                {task.points} puntos
+                {task.points} points
               </div>
             )}
           </div>
         )}
       </div>
 
-      {/* Modal de edición reutilizando TaskModal */}
       {showEditModal && (
         <TaskModal
           isOpen={showEditModal}
