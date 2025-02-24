@@ -29,7 +29,6 @@ body {
     background: #666;
     border-radius: 10px;
     cursor: pointer;
-
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
